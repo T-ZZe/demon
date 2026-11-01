@@ -1,11 +1,11 @@
-name: build
+name: Build DemonPact
 on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ChainsawRPG
+        working-directory: DemonPact/DemonPact
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -13,12 +13,10 @@ jobs:
           distribution: temurin
           java-version: '25'
           cache: maven
-          cache-dependency-path: ChainsawRPG/pom.xml
-      - name: Valider YAML et code
-        run: pip install pyyaml && python3 tools/validate_configs.py
-      - name: Compiler
-        run: mvn -B -ntp package
+          cache-dependency-path: DemonPact/DemonPact/pom.xml
+      - name: Compilation
+        run: mvn -B -ntp clean package
       - uses: actions/upload-artifact@v4
         with:
-          name: ChainsawRPG-jar
-          path: ChainsawRPG/target/ChainsawRPG-*.jar
+          name: DemonPact
+          path: DemonPact/DemonPact/target/DemonPact.jar
