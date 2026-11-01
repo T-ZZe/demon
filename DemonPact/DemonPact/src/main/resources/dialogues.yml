@@ -1,0 +1,344 @@
+# ============================================================================
+# DemonPact - dialogues des 12 démons
+# Une ligne est tirée au hasard dans chaque liste. Placeholders :
+#   {player}  joueur concerné      {demon}  nom du démon
+#   {power}   pouvoir proposé      {cost}   sacrifice demandé
+# Catégories : appear, propose, accept, refuse, timeout, sacrifice.HEARTS / HEADS / ITEMS
+# (la catégorie "sacrifice" suit le premier sacrifice du contrat)
+# ============================================================================
+
+AERON:
+  appear:
+    - "Enfin quelqu'un d'assez lent pour m'attendre. Je suis là, regardez-moi vite, je ne resterai pas."
+    - "Le vent a soufflé, et vous voilà tous immobiles. Charmant spectacle."
+    - "Je suis arrivé avant même que vous ne clignez des yeux. Essayez de me suivre !"
+  propose:
+    - "Alors {player}, tu veux voler ? {power}, rien que pour toi... si tu es assez rapide pour signer."
+    - "Je t'offre {power}, mortel. Dépêche-toi, mon temps vaut plus que ta vie entière."
+  accept:
+    - "Voilà ! Tu as signé plus vite que je ne l'espérais. Tâche de ne pas tomber, {player}."
+    - "Le vent est avec toi. Ne me remercie pas, tu n'aurais pas le temps de finir."
+  refuse:
+    - "Tu refuses ? Quelle lenteur d'esprit. Le ciel se passera de toi."
+    - "Rester cloué au sol, {player}... c'est ton choix. Pathétique."
+  timeout:
+    - "Tu as mis trop de temps. Le vent n'attend personne, surtout pas toi."
+    - "Cinq minutes ! Un souffle m'aurait suffi. Adieu, tortue."
+  sacrifice:
+    HEARTS:
+      - "Un peu de vie, juste de quoi me divertir : {cost}. Tu ne vas pas pleurer pour si peu ?"
+      - "Je prends {cost} et tu repars plus léger. Au sens propre, ha !"
+    HEADS:
+      - "Apporte-moi {cost}. Des trophées, voilà ce qui amuse le vent."
+      - "{cost}, des têtes bien arrachées. Je les ferai tourbillonner un moment."
+    ITEMS:
+      - "Quelques richesses : {cost}. Je les emporterai dans mes tempêtes."
+      - "Donne-moi {cost}, que je puisse enfin me moquer de ton coffre vide."
+
+IGNIS:
+  appear:
+    - "BRÛLEZ ! Tout doit brûler ! Qui ose réveiller IGNIS ?!"
+    - "Mes flammes ont faim, mortels. Elles auront toujours faim."
+    - "Je sors des cendres de mille villages. Le vôtre sera le prochain."
+  propose:
+    - "{player} ! Prends {power} et réduis tout en cendres, ou crève dans ton coin !"
+    - "Voici {power}. Accepte, ou je te brûle sur place, {player} !"
+  accept:
+    - "AH ! Ça, c'est un pacte ! Brûle, {player}, brûle tout sur ton passage !"
+    - "Enfin du courage ! Mes flammes coulent déjà dans tes veines !"
+  refuse:
+    - "Tu REFUSES ?! Je devrais te transformer en torche, misérable !"
+    - "Lâche ! Retourne trembler dans l'ombre, {player} !"
+  timeout:
+    - "Tu ne réponds pas ? Mon feu s'est éteint d'ennui. Tu me dégoûtes !"
+    - "Cinq minutes à ne rien dire ! Je brûle d'une colère que tu ne mérites même pas !"
+  sacrifice:
+    HEARTS:
+      - "Je veux {cost} ! Ton sang bouillira pour mes flammes !"
+      - "{cost}, arrachés à ta chair. Paie, et brûle plus fort !"
+    HEADS:
+      - "Des têtes, {cost} ! Je les ferai fondre dans ma forge !"
+      - "Apporte {cost} et je les ferai flamber !"
+    ITEMS:
+      - "Jette-moi {cost} dans le brasier, et vite !"
+      - "{cost} ! Je veux voir cet or fondre sous mes yeux !"
+
+VOLTAR:
+  appear:
+    - "Ah ! C'est déjà ici ? Bien, bien, peu importe, vite, vite !"
+    - "ZZZT ! Pardon, j'étais ailleurs. Je suis là, maintenant. Peut-être."
+    - "Le ciel m'a craché dans votre monde. Je ne sais pas combien de temps je reste !"
+  propose:
+    - "{player} ! {power}, décide-toi, j'ai déjà changé d'avis deux fois !"
+    - "Voilà {power}, ou autre chose, non, {power}, signe, tout de suite !"
+  accept:
+    - "Parfait ! Ou presque ! Peu importe ! Tu as la foudre, {player} !"
+    - "ZZZT ! Signé ! Maintenant va frapper quelque chose avant que je change d'idée !"
+  refuse:
+    - "Non ? Alors j'ai perdu mon temps. Ou le tien, je ne sais plus."
+    - "Refus ! Intéressant ! Ennuyeux ! Je pars !"
+  timeout:
+    - "Tu ne réponds pas ? J'ai oublié pourquoi j'étais venu. Tant pis !"
+    - "Cinq minutes, une éternité ! Un éclair aurait été plus rapide."
+  sacrifice:
+    HEARTS:
+      - "{cost}, un petit prélèvement, une étincelle de vie, c'est tout !"
+      - "Donne-moi {cost}, vite, ça fait de jolies étincelles !"
+    HEADS:
+      - "Il me faut {cost} ! Pourquoi ? Parce que j'aime la foudre qui frappe des têtes !"
+      - "{cost}, rapporte-les vite, ou je m'en vais !"
+    ITEMS:
+      - "{cost}, je ne sais plus pourquoi, mais je les veux !"
+      - "Apporte {cost} avant que mon humeur ne tourne !"
+
+CHRONOS:
+  appear:
+    - "Je suis déjà venu. Je viendrai encore. Vous ne l'avez simplement pas encore vécu."
+    - "Le temps se plie, mortels. Ce soir, il se plie pour moi."
+    - "Chaque seconde que vous gaspillez m'appartient. Je suis venu les récolter."
+  propose:
+    - "Tu hésites, {player}... j'ai déjà vu ce que tu choisiras. {power} sera tien."
+    - "Je t'offre {power}. Ne cherche pas à comprendre : tu as déjà accepté, dans un autre instant."
+  accept:
+    - "Comme je le savais. Le temps t'obéit désormais, {player}... pour un moment."
+    - "Bien. Tu viens de signer ce que tu avais déjà signé. Savoure."
+  refuse:
+    - "Tu refuses. Curieux, je t'avais vu accepter. Un autre fil du temps, sans doute."
+    - "Un refus, soit. Nous nous reverrons, {player}, avant même que tu ne t'en souviennes."
+  timeout:
+    - "Cinq minutes écoulées, exactement comme prévu. Le silence aussi est un choix."
+    - "Tu as laissé filer le sable. Il ne remonte jamais, mortel."
+  sacrifice:
+    HEARTS:
+      - "Un peu de ta vie, {cost}. Elle t'aurait de toute façon échappé un jour."
+      - "{cost}. Le temps te les prendrait de toute façon, autant me les donner."
+    HEADS:
+      - "Apporte-moi {cost}. Les morts ont déjà vu leur futur, ils n'en ont plus l'usage."
+      - "{cost}, ni plus ni moins, comme dans ce que je sais déjà."
+    ITEMS:
+      - "{cost}. Peu de chose pour qui possède des siècles."
+      - "Je veux {cost}. Tu me les devrais de toute façon, dans une autre vie."
+
+UMBRA:
+  appear:
+    - "..."
+    - "Je suis là. Je l'ai toujours été."
+    - "Ne cherchez pas mon visage. Il n'y en a pas."
+  propose:
+    - "{player}. {power}. Murmure oui."
+    - "Dans l'ombre, tout se négocie. {power}... {player}."
+  accept:
+    - "Bien. L'ombre te connaît maintenant."
+    - "Va. Sans bruit."
+  refuse:
+    - "Soit."
+    - "Tu retournes à la lumière. Elle te brûlera un jour."
+  timeout:
+    - "Silence. Je prends cela pour une réponse."
+    - "..."
+  sacrifice:
+    HEARTS:
+      - "{cost}. Sans un cri."
+      - "Un peu de toi, {cost}. L'ombre sait attendre."
+    HEADS:
+      - "{cost}. Les morts se taisent bien."
+      - "Offre-moi {cost}. Ils ne diront rien."
+    ITEMS:
+      - "{cost}. Dépose-les dans le noir."
+      - "Je prends {cost}. Personne ne verra."
+
+SANGUIS:
+  appear:
+    - "Mmmh... ça sent le sang frais. Quel merveilleux accueil, mes chéris !"
+    - "Ne vous inquiétez pas, je ne mords que ceux qui me plaisent. Et vous me plaisez tous."
+    - "Une hémorragie de bonheur ! Me voici, assoiffé et de bonne humeur !"
+  propose:
+    - "{player}, mon petit pressoir préféré ! {power}, juste un petit sacrifice, une goutte d'amour..."
+    - "Signe, mon cœur, signe ! {power} en échange d'un peu de ce délicieux sang."
+  accept:
+    - "HAHA ! Délicieux ! Tu saignes si bien, {player}. Je t'adore !"
+    - "Voilà, c'est fait, ça n'a pas fait trop mal. Enfin, pas pour moi !"
+  refuse:
+    - "Oh... tu as peur ? Quelle tristesse. Je t'aurais fait un sacrifice si doux."
+    - "Refuser mon offre ? Tu me brises le cœur. Enfin, le tien, c'est plus drôle."
+  timeout:
+    - "Tu n'as rien dit... Ta peur sent merveilleusement bon. Je reviendrai, mon chéri."
+    - "Cinq minutes de suspense ! Tu m'as bien fait rire, {player}."
+  sacrifice:
+    HEARTS:
+      - "{cost}, tout simplement ! Une larme de sang, un grand sourire !"
+      - "Je veux {cost}, et je te promets de ne les prendre qu'une seule fois. Ha ha !"
+    HEADS:
+      - "{cost}, mon trésor, bien fraîches, rouges, sanglantes... Comme j'aime !"
+      - "Apporte-moi {cost}. Je serai tendre avec elles, promis."
+    ITEMS:
+      - "{cost}, pour le décor ! Mon boudoir manque de cadeaux."
+      - "Donne-moi {cost}, et je ne te prendrai presque rien d'autre."
+
+TERRAX:
+  appear:
+    - "Je suis TERRAX. La terre se souvient de moi. Inclinez-vous."
+    - "Cette montagne n'a pas bougé depuis des millénaires. Moi non plus. Écoutez-moi."
+    - "Silence. Le sol tremble sous mon pas. Écoutez la voix de la roche."
+  propose:
+    - "{player}, approche. {power} te sera accordé selon mes conditions. Elles ne sont pas négociables."
+    - "J'ai décidé : {power}. Tu accepteras, ou tu partiras. Choisis, {player}."
+  accept:
+    - "Le pacte est scellé dans la pierre. Honore-le, {player}."
+    - "Bien. Tu es désormais lié à la terre. Ne la trahis jamais."
+  refuse:
+    - "Tu refuses mon offre ? La terre n'oublie pas les insolents."
+    - "Retire-toi. La pierre saura attendre un autre."
+  timeout:
+    - "Le silence est une insulte à ma patience. Je m'en vais."
+    - "Cinq minutes. Une montagne s'érode en moins de temps. Tu m'as déçu."
+  sacrifice:
+    HEARTS:
+      - "J'exige {cost}. Tu me les donneras, comme la terre prend tout à la fin."
+      - "{cost}. La loi est la loi."
+    HEADS:
+      - "Il me faut {cost}. Ce sont les offrandes que j'accepte."
+      - "{cost} serviront de fondations. Apporte-les."
+    ITEMS:
+      - "Pour ma part, {cost}. Rien de moins. La terre ne se contente pas de peu."
+      - "Dépose {cost} au pied de l'autel. Je jugerai de leur valeur."
+
+AQUARIS:
+  appear:
+    - "Les abysses vous observent depuis toujours. Aujourd'hui, c'est moi qui viens."
+    - "Calme. Froid. Profond. C'est ainsi que je suis, et c'est ainsi que vous finirez."
+    - "Vous respirez encore. Je note ce détail."
+  propose:
+    - "{player}, j'ai calculé que {power} te serait utile. Les termes sont ci-dessous."
+    - "{power} contre un prix raisonnable. Je n'ai jamais perdu une négociation, {player}."
+  accept:
+    - "Transaction conclue. Tes calculs étaient justes, {player}. Les miens, bien plus."
+    - "Comme prévu. Les abysses t'ouvrent leurs eaux."
+  refuse:
+    - "Refus enregistré. Tu as perdu une opportunité que tu ne retrouveras pas."
+    - "Dommage. Statistiquement, tu viens de commettre une erreur."
+  timeout:
+    - "Le silence est une réponse. Une mauvaise, mais une réponse."
+    - "Cinq minutes d'inaction. Intéressant. Peu glorieux."
+  sacrifice:
+    HEARTS:
+      - "Le prix : {cost}. Un montant juste pour un pouvoir juste."
+      - "{cost}. J'ai tout calculé, ce n'est que justice."
+    HEADS:
+      - "Il me faut {cost}. Les profondeurs gardent leurs morts, mais j'en veux d'autres."
+      - "{cost}. Un tribut raisonnable pour les abysses."
+    ITEMS:
+      - "Je demande {cost}. Un échange équitable, comme toujours."
+      - "{cost}. Pas un de moins, j'ai déjà compté."
+
+NOX:
+  appear:
+    - "La mort ne prévient pas. Moi non plus."
+    - "Vos souffles se font courts. Je viens récolter ce qu'il en reste."
+    - "Je suis NOX. Que chacun sente le froid dans son dos."
+  propose:
+    - "{player}... {power}. Un murmure de tombeau pour toi."
+    - "J'ai un cadeau pour toi, {player}. {power}. Les morts ne mentent jamais."
+  accept:
+    - "Le pacte est écrit. Les morts s'en souviendront, {player}."
+    - "Bien. Désormais, tu marcheras avec nous."
+  refuse:
+    - "Tu refuses la mort ? Elle viendra quand même, {player}."
+    - "Insensé. Le tombeau t'attend, qu'importe ton choix."
+  timeout:
+    - "Ton silence est celui des tombes. Je m'en vais, pour l'instant."
+    - "Cinq minutes. Tu as déjà un pied dans ma demeure."
+  sacrifice:
+    HEARTS:
+      - "{cost}. La vie est un prêt, {player}. Je la réclame."
+      - "Tu me dois {cost}. La mort ne demande jamais deux fois."
+    HEADS:
+      - "Apporte-moi {cost}. Les crânes se rangent bien dans mon royaume."
+      - "{cost}. Les morts réclament leurs semblables."
+    ITEMS:
+      - "{cost}. Même les morts aiment les trésors."
+      - "Dépose {cost} sur la pierre. Elle se souviendra."
+
+PHANTOM:
+  appear:
+    - "Ah, bonsoir ! Ou plutôt, non, ce n'était pas moi. Ou si ? Qui sait !"
+    - "Je suis ici. Enfin, je crois. Regardez bien, je ne suis jamais où vous pensez."
+    - "Surprise ! Vous m'attendiez, n'est-ce pas ? Non ? Moi non plus."
+  propose:
+    - "{player}, mon ami, mon cher ami ! J'ai {power} pour toi, et je ne mens jamais. Presque jamais."
+    - "{power}, dis-tu ? Quelle coïncidence, j'en avais justement un sous la main !"
+  accept:
+    - "Génial ! Tu as signé, tu es magnifique ! Relis donc les petites lignes, {player}, ha !"
+    - "Oh, tu y as cru ! Félicitations, c'est fait, tu es à moi, enfin, à toi !"
+  refuse:
+    - "Refuser ? Moi qui te trouvais si malin ! Tu as raison, d'ailleurs. Ou pas."
+    - "Hé ! Reviens ! Je plaisantais ! Ou pas. Ou si."
+  timeout:
+    - "Tu ne dis rien ? Ça tombe bien, moi non plus. Je m'éclipse."
+    - "Cinq minutes ! Tu as joué à la perfection, {player}. Je suis déjà parti, d'ailleurs."
+  sacrifice:
+    HEARTS:
+      - "Un peu de ta vie, {cost}, rien de grave ! Tu n'en auras pas besoin, c'est un jeu."
+      - "{cost}, sois sérieux, c'est une offrande ridicule. Ou presque."
+    HEADS:
+      - "Je veux {cost}, pour les collectionner, évidemment, bien sûr, absolument !"
+      - "{cost}, voilà un cadeau qui ne s'oublie pas !"
+    ITEMS:
+      - "{cost}, pour mon petit spectacle. Promis, tu les reverras. Peut-être."
+      - "Donne-moi {cost}, et je te promets de ne pas te voler. Cette fois."
+
+GRAVITAS:
+  appear:
+    - "Courbez la tête, créatures. Ce monde tient parce que je le veux."
+    - "Tout ce qui tombe, tombe pour moi. Tout ce qui s'élève, s'élève par ma permission."
+    - "Je suis GRAVITAS. Vos mondes pèsent peu devant moi."
+  propose:
+    - "Mortel {player}, je daigne t'offrir {power}. Sois reconnaissant."
+    - "{power}, voilà ce que ma grandeur t'accorde. Ne gâche pas cette faveur, {player}."
+  accept:
+    - "Sage décision. Tu pèseras désormais plus que ta propre ombre, {player}."
+    - "Le poids du monde est avec toi. Ne t'effondre pas sous lui."
+  refuse:
+    - "Tu refuses ? Insignifiant. La gravité n'a pas besoin de toi."
+    - "Tu t'abaisses toi-même, mortel. Je n'insisterai pas."
+  timeout:
+    - "Ton silence est une insulte à ma grandeur. Je me retire."
+    - "Cinq minutes de mon temps gaspillées. Tu en paieras le poids un jour."
+  sacrifice:
+    HEARTS:
+      - "{cost}. Une obole bien légère pour mon pouvoir."
+      - "Tu me céderas {cost}. Considère-le comme un honneur."
+    HEADS:
+      - "J'exige {cost}. Les têtes s'inclinent d'elles-mêmes devant moi."
+      - "{cost}. Que ces trophées reconnaissent leur maître."
+    ITEMS:
+      - "Offre-moi {cost}, et considère-toi béni."
+      - "{cost}. Que ta richesse tombe à mes pieds."
+
+VOID:
+  appear:
+    - "Il n'y avait rien. Il y aura rien. Mais je suis ici entre les deux."
+    - "Ceci n'est pas une voix. Ceci n'est pas une présence. Ceci est."
+    - "Regardez-moi. Non, ne me regardez pas. Vous ne me voyez déjà plus."
+  propose:
+    - "{player}. {power}. Le néant offre ce qu'il n'a pas."
+    - "Entends-tu l'écho de {power} ? Il t'appelait avant ta naissance, {player}."
+  accept:
+    - "Signé. Ou pas encore. Ou depuis toujours. {player}, tu appartiens au vide."
+    - "Il est fait. Il n'est pas fait. Il l'était. Tu comprendras, ou non."
+  refuse:
+    - "Refus. Accepté. Oublié. Tu n'as jamais été ici."
+    - "Le néant ne se vexe pas. Il attend, simplement."
+  timeout:
+    - "Cinq minutes. Cinq siècles. Cinq instants. Aucune différence."
+    - "Tu n'as rien dit. Le silence est ma langue maternelle."
+  sacrifice:
+    HEARTS:
+      - "{cost}. Ce que tu perds, tu ne l'avais jamais."
+      - "Un cœur, un néant. {cost}. Quelle différence ?"
+    HEADS:
+      - "{cost}. Les têtes ne pensent plus, le vide s'en réjouit."
+      - "Apporte {cost} et regarde-les disparaître, comme tout."
+    ITEMS:
+      - "{cost}. Donne ce qui n'a pas de valeur pour qui n'existe pas."
+      - "Je veux {cost}. Je ne sais pas pourquoi. Toi non plus."

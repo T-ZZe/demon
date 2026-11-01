@@ -1,0 +1,502 @@
+# ============================================================================
+#  DemonPact - configuration (Paper 26.3)
+#  Codes couleur : &  | Sons : clés Minecraft (ex: entity.wither.spawn)
+#  Particules : clés Minecraft sans donnée (ex: flame, portal, end_rod)
+#  Dialogues des démons : voir dialogues.yml
+# ============================================================================
+prefix: "&4&l[&c&lDemonPact&4&l] &7"
+
+# --- Négociation -------------------------------------------------------------
+negotiation:
+  time-seconds: 300          # temps pour accepter / refuser (5 minutes)
+  on-refuse: DESPAWN         # DESPAWN : le démon disparaît | NEXT_PLAYER : il se tourne vers un autre joueur
+  on-timeout: NEXT_PLAYER    # idem, en cas de non-réponse
+  open-gui-delay-ticks: 40   # délai avant l'ouverture automatique de l'interface
+  chat-radius: 60            # portée des paroles du démon (le joueur ciblé les reçoit toujours)
+  announce-global: true      # annonce de l'apparition à tout le serveur
+
+# --- Demon Stell (autel) -------------------------------------------------------
+# Position : définie par /demon setstell (écrite ici automatiquement), modifiable à la main.
+stell:
+  world: ""
+  x: 0
+  y: 0
+  z: 0
+  build-on-set: true         # construit la plateforme / les runes lors de /demon setstell
+  radius: 8                  # rayon de la plateforme (5 à 16)
+  clear-height: 8            # hauteur dégagée au-dessus de la plateforme
+  protect: true              # interdit casser/poser sur l'autel sans demon.admin
+  target-radius: 40          # rayon (blocs) dans lequel le démon choisit un joueur (0 = tout le monde)
+  animation-ticks: 100       # durée de l'animation d'invocation (20 ticks = 1 seconde)
+  lightning-during-summon: true   # éclairs visuels (sans dégâts) pendant l'invocation
+  idle-animation: true       # animation d'attente quand aucun démon n'est présent
+  idle-view-distance: 64     # animation visible seulement si un joueur est à moins de X blocs
+
+# --- Pactes ---------------------------------------------------------------------
+pact:
+  max-active: 1              # nombre de pactes simultanés par joueur
+  allow-abandon: true        # /demon abandon (les sacrifices ne sont jamais rendus)
+
+# --- Sacrifices -------------------------------------------------------------------
+sacrifice:
+  heart-health: 2.0          # points de vie par cœur (1 cœur = 2.0)
+  min-max-health: 6.0        # vie maximale minimale après sacrifices (6.0 = 3 cœurs)
+
+heads:
+  drop-on-pvp-kill: true     # un joueur tué par un autre joueur laisse sa tête (marquée par le plugin)
+  require-plugin-tag: false  # true : seules les têtes lâchées par ce plugin sont acceptées
+  allow-own-head: false      # interdit de sacrifier sa propre tête
+
+items:
+  keep-on-death: true        # l'objet de pacte est conservé à la mort de son propriétaire
+  allow-reclaim: true        # /demon item : réémet l'objet (l'ancien devient inerte)
+  reclaim-cooldown-seconds: 60
+
+# --- Réglages des pouvoirs -------------------------------------------------------
+powers-settings:
+  anti-spam-ms: 500          # délai minimal entre deux utilisations de pouvoir
+  affect-players: true       # les pouvoirs affectent les autres joueurs
+  max-frozen: 40             # entités maximum figées par Arrêt du Temps
+  max-servants: 6            # serviteurs maximum par joueur (NOX)
+  wall-material: STONE_BRICKS
+
+# --- Zones où les pouvoirs sont désactivés ----------------------------------------
+disabled-zones:
+  worlds: []                 # ex: ["world_spawn"]
+  cuboids: []                # ex: ["world:0,0,0:100,255,100"]
+  worldguard-regions: []     # noms de régions WorldGuard (si WorldGuard est installé)
+
+# --- Pouvoirs ----------------------------------------------------------------------
+# cooldown / duration en secondes, range en blocs. strength et damage dépendent du pouvoir.
+# Les clés name / description sont facultatives. enabled: false désactive un pouvoir.
+# Aucune évolution : ces valeurs ne changent jamais en jeu.
+powers:
+  AIR_DASH: {cooldown: 8, duration: 0, range: 0, strength: 2.4, damage: 0, particle: cloud, sound: entity.phantom.flap, enabled: true}
+  AIR_JUMP: {cooldown: 6, duration: 0, range: 0, strength: 1, damage: 0, particle: cloud, sound: entity.phantom.flap, enabled: true}
+  TORNADO: {cooldown: 25, duration: 3, range: 6, strength: 1.6, damage: 4, particle: cloud, sound: entity.breeze.wind_burst, enabled: true}
+  FIRE_DASH: {cooldown: 10, duration: 4, range: 2.5, strength: 2, damage: 4, particle: flame, sound: entity.blaze.shoot, enabled: true}
+  FLAME_BURST: {cooldown: 20, duration: 5, range: 6, strength: 1.3, damage: 6, particle: flame, sound: entity.blaze.shoot, enabled: true}
+  FIRE_RESISTANCE: {cooldown: 60, duration: 45, range: 0, strength: 0, damage: 0, particle: flame, sound: item.firecharge.use, enabled: true}
+  LIGHTNING_STRIKE: {cooldown: 15, duration: 0, range: 30, strength: 0, damage: 9, particle: electric_spark, sound: entity.lightning_bolt.thunder, enabled: true}
+  ELECTRIC_DASH: {cooldown: 12, duration: 0, range: 2.5, strength: 2.2, damage: 4, particle: electric_spark, sound: entity.lightning_bolt.impact, enabled: true}
+  ELECTRIC_FIELD: {cooldown: 40, duration: 8, range: 5, strength: 0, damage: 2, particle: electric_spark, sound: block.beacon.activate, enabled: true}
+  TIME_STOP: {cooldown: 60, duration: 4, range: 6, strength: 0, damage: 0, particle: end_rod, sound: block.bell.use, enabled: true}
+  SLOW_ENEMIES: {cooldown: 25, duration: 8, range: 8, strength: 3, damage: 0, particle: end_rod, sound: block.bell.use, enabled: true}
+  HASTE_SELF: {cooldown: 30, duration: 8, range: 0, strength: 2, damage: 0, particle: end_rod, sound: block.beacon.power_select, enabled: true}
+  INVISIBILITY: {cooldown: 45, duration: 15, range: 0, strength: 0, damage: 0, particle: squid_ink, sound: entity.enderman.teleport, enabled: true}
+  SHORT_TELEPORT: {cooldown: 8, duration: 0, range: 8, strength: 0, damage: 0, particle: squid_ink, sound: entity.enderman.teleport, enabled: true}
+  DARK_ZONE: {cooldown: 45, duration: 8, range: 6, strength: 0, damage: 0, particle: squid_ink, sound: entity.warden.sonic_charge, enabled: true}
+  LIFESTEAL: {cooldown: 40, duration: 10, range: 0, strength: 0.4, damage: 0, particle: crimson_spore, sound: entity.witch.celebrate, enabled: true}
+  SHOCKWAVE: {cooldown: 18, duration: 0, range: 5, strength: 1.2, damage: 5, particle: damage_indicator, sound: entity.warden.sonic_boom, enabled: true}
+  REGEN: {cooldown: 40, duration: 8, range: 0, strength: 1, damage: 0, particle: heart, sound: entity.generic.drink, enabled: true}
+  SEISMIC_WAVE: {cooldown: 15, duration: 0, range: 12, strength: 0.8, damage: 5, particle: poof, sound: block.stone.break, enabled: true}
+  STONE_WALL: {cooldown: 25, duration: 10, range: 5, strength: 0, damage: 0, particle: poof, sound: block.stone.place, enabled: true}
+  DAMAGE_RESIST: {cooldown: 50, duration: 12, range: 0, strength: 1, damage: 0, particle: poof, sound: block.stone.place, enabled: true}
+  WATER_PRISON: {cooldown: 35, duration: 5, range: 20, strength: 0, damage: 1, particle: bubble_pop, sound: entity.player.splash.high_speed, enabled: true}
+  WAVE: {cooldown: 20, duration: 0, range: 10, strength: 1.8, damage: 3, particle: splash, sound: entity.player.splash.high_speed, enabled: true}
+  WATER_BREATHING: {cooldown: 0, duration: 0, range: 0, strength: 0, damage: 0, particle: bubble_pop, sound: block.bubble_column.upwards_ambient, enabled: true}
+  SUMMON_SERVANTS: {cooldown: 60, duration: 30, range: 20, strength: 3, damage: 0, particle: soul, sound: entity.evoker.prepare_summon, enabled: true}
+  FEAR_AURA: {cooldown: 35, duration: 8, range: 7, strength: 0, damage: 0, particle: soul, sound: entity.ghast.scream, enabled: true}
+  CURSE: {cooldown: 40, duration: 10, range: 25, strength: 0, damage: 0, particle: soul, sound: entity.wither.hurt, enabled: true}
+  CLONES: {cooldown: 30, duration: 12, range: 0, strength: 3, damage: 0, particle: witch, sound: entity.illusioner.cast_spell, enabled: true}
+  TELEPORT: {cooldown: 15, duration: 6, range: 14, strength: 0, damage: 0, particle: witch, sound: entity.illusioner.mirror_move, enabled: true}
+  CONFUSION: {cooldown: 30, duration: 8, range: 7, strength: 0, damage: 0, particle: witch, sound: entity.illusioner.cast_spell, enabled: true}
+  LEVITATE_ZONE: {cooldown: 30, duration: 4, range: 7, strength: 0, damage: 0, particle: reverse_portal, sound: block.beacon.power_select, enabled: true}
+  GRAVITY_CRUSH: {cooldown: 25, duration: 0, range: 7, strength: 2, damage: 6, particle: crit, sound: block.anvil.land, enabled: true}
+  LOW_GRAVITY: {cooldown: 40, duration: 20, range: 0, strength: 2, damage: 0, particle: reverse_portal, sound: block.beacon.power_select, enabled: true}
+  RIFT: {cooldown: 40, duration: 6, range: 7, strength: 0.35, damage: 2, particle: portal, sound: block.portal.ambient, enabled: true}
+  VOID_PROJECTILE: {cooldown: 12, duration: 0, range: 40, strength: 1.6, damage: 8, particle: portal, sound: entity.enderman.scream, enabled: true}
+  VOID_TELEPORT: {cooldown: 25, duration: 0, range: 40, strength: 0, damage: 0, particle: portal, sound: entity.enderman.teleport, enabled: true}
+
+# --- Les 12 démons ----------------------------------------------------------------
+# Chaque contrat : un pouvoir contre un ou plusieurs sacrifices.
+# Types de sacrifice : HEARTS (cœurs permanents), HEADS (têtes de joueurs), ITEMS (material + amount).
+# entity : type d'entité de l'apparence du démon ; element : WIND FIRE LIGHTNING TIME SHADOW BLOOD EARTH WATER DEATH ILLUSION GRAVITY VOID
+demons:
+  AERON:
+    name: "AERON"
+    title: "Démon du Vent"
+    color: "&b"
+    glow-color: aqua
+    rarity: RARE
+    power-level: 5
+    element: WIND
+    entity: vex
+    scale: 1.8
+    hover: true
+    item:
+      material: FEATHER
+      name: "&b&lPlume du Vent"
+      lore:
+        - "&7Une plume qui ne retombe jamais."
+    contracts:
+      air_dash:
+        power: AIR_DASH
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Vous perdez 2 cœurs permanents."
+      tornado:
+        power: TORNADO
+        costs: [{type: HEADS, amount: 3}]
+        side-effects:
+          - "&7Trois têtes de joueurs sont consumées."
+      air_jump:
+        power: AIR_JUMP
+        costs: [{type: HEARTS, amount: 1}]
+        side-effects:
+          - "&7Vous perdez 1 cœur permanent."
+  IGNIS:
+    name: "IGNIS"
+    title: "Démon du Feu"
+    color: "&c"
+    glow-color: red
+    rarity: RARE
+    power-level: 6
+    element: FIRE
+    entity: blaze
+    scale: 1.4
+    hover: true
+    item:
+      material: BLAZE_POWDER
+      name: "&c&lCœur des Flammes"
+      lore:
+        - "&7Il bat comme un brasier."
+    contracts:
+      fire_dash:
+        power: FIRE_DASH
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Les flammes consument votre vitalité."
+      flame_burst:
+        power: FLAME_BURST
+        costs: [{type: HEARTS, amount: 3}]
+        side-effects:
+          - "&7Un sacrifice lourd pour une explosion."
+      fire_resistance:
+        power: FIRE_RESISTANCE
+        costs: [{type: HEARTS, amount: 1}]
+        side-effects:
+          - "&7Le feu ne vous brûlera plus."
+  VOLTAR:
+    name: "VOLTAR"
+    title: "Démon de la Foudre"
+    color: "&e"
+    glow-color: yellow
+    rarity: EPIC
+    power-level: 7
+    element: LIGHTNING
+    entity: breeze
+    scale: 1.5
+    hover: true
+    item:
+      material: AMETHYST_SHARD
+      name: "&e&lCristal de Foudre"
+      lore:
+        - "&7Il crépite à votre contact."
+    contracts:
+      lightning_strike:
+        power: LIGHTNING_STRIKE
+        costs: [{type: HEADS, amount: 3}]
+        side-effects:
+          - "&7Vous devez ramener des têtes authentiques."
+      electric_dash:
+        power: ELECTRIC_DASH
+        costs: [{type: HEADS, amount: 2}]
+        side-effects:
+          - "&7Deux têtes de joueurs."
+      electric_field:
+        power: ELECTRIC_FIELD
+        costs: [{type: HEADS, amount: 4}]
+        side-effects:
+          - "&7Quatre têtes de joueurs."
+  CHRONOS:
+    name: "CHRONOS"
+    title: "Démon du Temps"
+    color: "&6"
+    glow-color: gold
+    rarity: LEGENDARY
+    power-level: 9
+    element: TIME
+    entity: evoker
+    helmet: GOLDEN_HELMET
+    scale: 1.3
+    hover: false
+    item:
+      material: CLOCK
+      name: "&6&lMontre du Temps"
+      lore:
+        - "&7Son tic-tac n'est pas celui du monde."
+    contracts:
+      time_stop:
+        power: TIME_STOP
+        costs: [{type: HEARTS, amount: 4}]
+        side-effects:
+          - "&7Quatre cœurs sacrifiés pour arrêter le temps."
+      slow_enemies:
+        power: SLOW_ENEMIES
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Deux cœurs permanents."
+      haste_self:
+        power: HASTE_SELF
+        costs: [{type: HEARTS, amount: 1}]
+        side-effects:
+          - "&7Un cœur permanent."
+  UMBRA:
+    name: "UMBRA"
+    title: "Démon des Ombres"
+    color: "&8"
+    glow-color: dark_gray
+    rarity: EPIC
+    power-level: 7
+    element: SHADOW
+    entity: enderman
+    scale: 1.2
+    hover: false
+    item:
+      material: ECHO_SHARD
+      name: "&8&lFragment des Ombres"
+      lore:
+        - "&7Il absorbe la lumière."
+    contracts:
+      invisibility:
+        power: INVISIBILITY
+        costs: [{type: HEADS, amount: 2}]
+        side-effects:
+          - "&7Deux têtes de joueurs."
+      short_teleport:
+        power: SHORT_TELEPORT
+        costs: [{type: HEADS, amount: 1}]
+        side-effects:
+          - "&7Une seule tête suffit."
+      dark_zone:
+        power: DARK_ZONE
+        costs: [{type: HEADS, amount: 3}]
+        side-effects:
+          - "&7Trois têtes de joueurs."
+  SANGUIS:
+    name: "SANGUIS"
+    title: "Démon du Sang"
+    color: "&4"
+    glow-color: dark_red
+    rarity: EPIC
+    power-level: 7
+    element: BLOOD
+    entity: vindicator
+    helmet: LEATHER_HELMET
+    scale: 1.3
+    hover: false
+    item:
+      material: FERMENTED_SPIDER_EYE
+      name: "&4&lCœur Sanguinaire"
+      lore:
+        - "&7Il palpite encore."
+    contracts:
+      lifesteal:
+        power: LIFESTEAL
+        costs: [{type: HEARTS, amount: 3}]
+        side-effects:
+          - "&7Votre sang nourrit le pacte."
+      shockwave:
+        power: SHOCKWAVE
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Deux cœurs permanents."
+      regen:
+        power: REGEN
+        costs: [{type: HEARTS, amount: 1}]
+        side-effects:
+          - "&7Un cœur permanent."
+  TERRAX:
+    name: "TERRAX"
+    title: "Démon de la Terre"
+    color: "&2"
+    glow-color: dark_green
+    rarity: RARE
+    power-level: 6
+    element: EARTH
+    entity: iron_golem
+    scale: 1.6
+    hover: false
+    item:
+      material: CLAY_BALL
+      name: "&2&lNoyau Terrestre"
+      lore:
+        - "&7Lourd comme une montagne."
+    contracts:
+      seismic_wave:
+        power: SEISMIC_WAVE
+        costs: [{type: ITEMS, material: DIAMOND, amount: 16}]
+        side-effects:
+          - "&7Seize diamants à offrir."
+      stone_wall:
+        power: STONE_WALL
+        costs: [{type: ITEMS, material: EMERALD, amount: 24}]
+        side-effects:
+          - "&7Vingt-quatre émeraudes."
+      damage_resist:
+        power: DAMAGE_RESIST
+        costs: [{type: ITEMS, material: NETHERITE_SCRAP, amount: 4}]
+        side-effects:
+          - "&7Quatre débris de netherite."
+  AQUARIS:
+    name: "AQUARIS"
+    title: "Démon des Abysses"
+    color: "&3"
+    glow-color: dark_aqua
+    rarity: EPIC
+    power-level: 7
+    element: WATER
+    entity: drowned
+    helmet: TURTLE_HELMET
+    scale: 1.4
+    hover: false
+    item:
+      material: HEART_OF_THE_SEA
+      name: "&3&lPerle des Abysses"
+      lore:
+        - "&7On y entend l'océan."
+    contracts:
+      water_prison:
+        power: WATER_PRISON
+        costs: [{type: HEADS, amount: 3}]
+        side-effects:
+          - "&7Trois têtes de joueurs."
+      wave:
+        power: WAVE
+        costs: [{type: HEADS, amount: 2}]
+        side-effects:
+          - "&7Deux têtes de joueurs."
+      water_breathing:
+        power: WATER_BREATHING
+        costs: [{type: HEADS, amount: 1}]
+        side-effects:
+          - "&7Pouvoir passif : respiration aquatique permanente."
+  NOX:
+    name: "NOX"
+    title: "Démon de la Mort"
+    color: "&5"
+    glow-color: dark_purple
+    rarity: LEGENDARY
+    power-level: 9
+    element: DEATH
+    entity: wither_skeleton
+    scale: 1.5
+    hover: false
+    item:
+      material: WITHER_SKELETON_SKULL
+      name: "&5&lCrâne de la Mort"
+      lore:
+        - "&7Il murmure des noms oubliés."
+    contracts:
+      summon_servants:
+        power: SUMMON_SERVANTS
+        costs: [{type: HEARTS, amount: 3}]
+        side-effects:
+          - "&7Trois cœurs permanents."
+      fear_aura:
+        power: FEAR_AURA
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Deux cœurs permanents."
+      curse:
+        power: CURSE
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Deux cœurs permanents."
+  PHANTOM:
+    name: "PHANTOM"
+    title: "Démon de l'Illusion"
+    color: "&d"
+    glow-color: light_purple
+    rarity: EPIC
+    power-level: 7
+    element: ILLUSION
+    entity: illusioner
+    scale: 1.2
+    hover: false
+    item:
+      material: SPYGLASS
+      name: "&d&lMiroir Illusoire"
+      lore:
+        - "&7Votre reflet ne vous ressemble plus."
+    contracts:
+      clones:
+        power: CLONES
+        costs: [{type: ITEMS, material: TOTEM_OF_UNDYING, amount: 1}]
+        side-effects:
+          - "&7Un totem d'immortalité."
+      teleport:
+        power: TELEPORT
+        costs: [{type: ITEMS, material: ENDER_PEARL, amount: 16}]
+        side-effects:
+          - "&7Seize perles de l'Ender."
+      confusion:
+        power: CONFUSION
+        costs: [{type: ITEMS, material: ENCHANTED_GOLDEN_APPLE, amount: 1}]
+        side-effects:
+          - "&7Une pomme d'or enchantée."
+  GRAVITAS:
+    name: "GRAVITAS"
+    title: "Démon de la Gravité"
+    color: "&9"
+    glow-color: blue
+    rarity: LEGENDARY
+    power-level: 8
+    element: GRAVITY
+    entity: ravager
+    scale: 1.2
+    hover: false
+    item:
+      material: NAUTILUS_SHELL
+      name: "&9&lOrbe Gravitationnel"
+      lore:
+        - "&7Il pèse plus qu'il n'y paraît."
+    contracts:
+      levitate_zone:
+        power: LEVITATE_ZONE
+        costs: [{type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Deux cœurs permanents."
+      gravity_crush:
+        power: GRAVITY_CRUSH
+        costs: [{type: HEARTS, amount: 3}]
+        side-effects:
+          - "&7Trois cœurs permanents."
+      low_gravity:
+        power: LOW_GRAVITY
+        costs: [{type: HEARTS, amount: 1}]
+        side-effects:
+          - "&7Un cœur permanent."
+  VOID:
+    name: "VOID"
+    title: "Démon du Néant"
+    color: "&5"
+    glow-color: black
+    rarity: MYTHIC
+    power-level: 10
+    element: VOID
+    entity: warden
+    scale: 1.0
+    hover: false
+    item:
+      material: NETHER_STAR
+      name: "&5&lFragment du Néant"
+      lore:
+        - "&7Il n'y a rien dedans. C'est le problème."
+    contracts:
+      rift:
+        power: RIFT
+        costs: [{type: HEADS, amount: 2}, {type: HEARTS, amount: 1}]
+        side-effects:
+          - "&7Deux têtes et un cœur permanent."
+      void_projectile:
+        power: VOID_PROJECTILE
+        costs: [{type: HEADS, amount: 3}, {type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Trois têtes et deux cœurs permanents."
+      void_teleport:
+        power: VOID_TELEPORT
+        costs: [{type: HEADS, amount: 2}, {type: HEARTS, amount: 2}]
+        side-effects:
+          - "&7Deux têtes et deux cœurs permanents."

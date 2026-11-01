@@ -1,0 +1,34 @@
+name: DemonPact
+version: ${project.version}
+main: fr.demonpact.DemonPactPlugin
+api-version: '26.3'
+description: Pactes démoniaques avec 12 démons, autel vivant (Demon Stell) et pouvoirs uniques.
+authors: [DemonPact]
+softdepend: [WorldGuard]
+
+commands:
+  demon:
+    description: Commande principale de DemonPact
+    usage: /demon [help|info|pact|power|abandon|item|contract]
+    aliases: [demons, pacte]
+
+permissions:
+  demon.admin:
+    description: Toutes les commandes d'administration
+    default: op
+    children:
+      demon.moderator: true
+      demon.use: true
+      demon.info: true
+  demon.moderator:
+    description: Invoquer et renvoyer les démons
+    default: op
+    children:
+      demon.use: true
+      demon.info: true
+  demon.use:
+    description: Passer des pactes et utiliser les pouvoirs
+    default: true
+  demon.info:
+    description: Consulter /demon
+    default: true
